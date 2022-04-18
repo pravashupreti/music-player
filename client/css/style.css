@@ -103,7 +103,8 @@ main {
     color: white;
 }
 
-.add-action {
+.add-action,
+.remove-action {
     display: inline-block;
     margin: auto;
     height: 25px;
@@ -119,10 +120,20 @@ main {
     content: "+"
 }
 
+.remove-action::before {
+    margin: 9px;
+    vertical-align: -16%;
+    content: "-"
+}
+
 #searchBar {
     display: none;
 }
 
 #loginMsg {
+    display: none;
+}
+
+.require-auth {
     display: none;
 }

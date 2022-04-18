@@ -12,7 +12,7 @@ exports.login = (req, res) => {
 exports.logout = (req, res) => {
     if (req.cookies.session) {
         let user = User.getUserFromSession(req.cookies.session)
-        User.clearSession(user)
+        User.clearSession(user.id)
         res.status(200).json(user);
 
     } else {
@@ -27,6 +27,26 @@ exports.checkAuthentication = (req, res, next) => {
     if (req.cookies.session) {
         let user = User.getUserFromSession(req.cookies.session)
         res.status(200).json(user);
+
+    } else {
+
+        res.status(200).json({});
+
+    }
+
+}
+
+exports.addSongToPlaylist = (req, res, next) => {
+
+    if (req.cookies.session) {
+        let user = User.getUserFromSession(req.cookies.session)
+        if (user.id) {
+            let playlist = User.addSongToPlaylist(req.body.songId, user.id)
+            return res.status(200).json(playlist)
+        } else {
+            res.status(200).json({});
+
+        }
 
     } else {
 

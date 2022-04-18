@@ -43,7 +43,7 @@
 
             </div>
 
-            <div class="login-form" id="searchBar">
+            <div class="login-form require-auth" id="searchBar">
                 <div class="input-section">
 
                     <input type="text" id="searchSong">
@@ -69,10 +69,10 @@
 
     <main>
 
-        <section>
+        <section class="require-auth" id="songList">
             <div class="song-list">
                 <h2 class="title">
-                    Song You may like
+                    Songs You may like
                 </h2>
                 <table class="song-table">
                     <thead>
@@ -84,7 +84,7 @@
 
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="songListData">
                         <tr>
                             <td>1</td>
                             <td>Blinding Lights</td>
@@ -93,19 +93,36 @@
                                 <div class="add-action"> </div>
                             </td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>The Twist</td>
-                            <td>2019-01-01</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Smooth</td>
-                            <td>2019-01-01</td>
-                            <td></td>
-                        </tr>
 
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="playList">
+            <div class="song-list">
+                <h2 class="title">
+                    Your PlayList
+                </h2>
+                <table class="song-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Actions</th>
+
+                        </tr>
+                    </thead>
+                    <tbody id="playListData">
+                        <tr>
+                            <td>1</td>
+                            <td>Blinding Lights</td>
+                            <td>
+                                <div class="add-action"> </div>
+                                <div class="add-action"> </div>
+
+                            </td>
+                        </tr>
 
                     </tbody>
                 </table>

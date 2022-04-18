@@ -1,4 +1,4 @@
-const music = require('../data/musics')
+const musics = require('../data/musics')
 
 module.exports = class Music {
 
@@ -8,4 +8,7 @@ module.exports = class Music {
         this.releaseDate = releaseDate
     }
 
+    static getMusic() {
+        return musics
+    }
 }

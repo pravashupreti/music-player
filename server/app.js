@@ -5,6 +5,7 @@ const path = require('path')
 const cookieParser = require("cookie-parser");
 
 const userRouter = require('./routes/user');
+const musicRouter = require('./routes/music');
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/user', userRouter);
+app.use('/songs', musicRouter);
 
 app.use((req, res, next) => {
     res.status(404).json({ error: req.url + ' API not supported!' });
