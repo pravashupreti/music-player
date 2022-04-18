@@ -38,6 +38,18 @@ module.exports = class User {
         }
     }
 
+    static clearSession(userId) {
+
+        let userIndex = users.findIndex((user, index) => user.id === userId)
+        if (userIndex < 0) return {}
+        users[userIndex].session = null
+        return {
+            id: users[userIndex].id,
+            userName: users[userIndex].userName,
+        }
+
+    }
+
 
 
 }

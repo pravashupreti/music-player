@@ -45,6 +45,10 @@ img {
     border: none;
 }
 
+.login-form>.input-section>button:hover {
+    cursor: pointer;
+}
+
 .login-form label {
     color: white;
 }
@@ -113,4 +117,12 @@ main {
     margin: 8px;
     vertical-align: -25%;
     content: "+"
+}
+
+#searchBar {
+    display: none;
+}
+
+#loginMsg {
+    display: none;
 }
