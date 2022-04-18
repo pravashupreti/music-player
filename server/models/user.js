@@ -10,16 +10,34 @@ module.exports = class User {
     }
 
     static authenticate(userName, password) {
-        return users.filter(x => x.userName == userName && x.password === crypto.createHash('md5').update(password).digest('hex'))
+        let index = users.findIndex(x => x.userName == userName && x.password === crypto.createHash('md5').update(password).digest('hex'))
+        if (index < 0) return {}
+
+        return users[index]
     }
 
     static updateSession(userId) {
-        let userIndex = users.findIndex((user, index) => user.id === userId)
+        let userIndex = users.findIndex((user, index) => user.id == userId)
+        if (userIndex < 0) return {}
         users[userIndex].session = Date.now() + users[userIndex].userName
 
-        return users[userIndex]
+        return {
+            id: users[userIndex].id,
+            userName: users[userIndex].userName,
+            session: users[userIndex].session,
+        }
 
     }
+
+    static getUserFromSession(session) {
+        let userIndex = users.findIndex((user, index) => user.session === session)
+        if (userIndex < 0) return {}
+        return {
+            id: users[userIndex].id,
+            userName: users[userIndex].userName,
+        }
+    }
+
 
 
 }

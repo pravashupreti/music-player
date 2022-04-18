@@ -1,11 +1,23 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path')
+
+const cookieParser = require("cookie-parser");
+
 const userRouter = require('./routes/user');
 
 const app = express();
 
 app.use(cors());
+app.use(cookieParser());
+
 app.use(express.json());
+
+app.use(express.static(path.join(__dirname, '..', 'client')));
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'client', 'index.html'));
+})
 
 app.use('/user', userRouter);
 

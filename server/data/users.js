@@ -1,15 +1,15 @@
 const users = [{
-    uid: 1,
+    id: 1,
     userName: "pravash",
     password: "81dc9bdb52d04dc20036dbd8313ed055",
-    session: ''
+    session: 'defaultsession'
 }, {
-    uid: 2,
+    id: 2,
     userName: "raj",
     password: "81dc9bdb52d04dc20036dbd8313ed055",
     session: ''
 }, {
-    uid: 3,
+    id: 3,
     userName: "james",
     password: "81dc9bdb52d04dc20036dbd8313ed055",
     session: ''

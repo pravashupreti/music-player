@@ -13,6 +13,8 @@ img {
     position: fixed;
     background-color: var(--primary-color);
     width: 100%;
+    top: 0;
+    z-index: 1;
 }
 
 .nav .logo-container {
@@ -30,10 +32,16 @@ img {
 
 .login-form .input-section {
     display: inline;
+    padding-right: 10px;
 }
 
 .login-form>.input-section>input {
     height: 25px;
+    border: none;
+}
+
+.login-form>.input-section>button {
+    height: 27px;
     border: none;
 }
 
@@ -47,4 +55,62 @@ img {
     margin-top: 5px;
     margin-bottom: 5px;
     color: #E95C40;
+}
+
+main {
+    margin-top: 85px;
+    display: block;
+    position: relative;
+}
+
+.song-list {
+    margin: 0 200px 0 200px;
+}
+
+.song-list>.title {
+    text-align: center;
+    padding: 25px 0;
+    margin: 0;
+}
+
+.song-list>.song-table {
+    width: 100%;
+    background-color: whitesmoke;
+}
+
+.song-list>.song-table>thead {
+    height: 35px;
+    background-color: var(--primary-color2);
+    color: white;
+    font-size: 1.2em;
+}
+
+.song-list>.song-table>tbody>tr {
+    height: 35px;
+}
+
+.song-list>.song-table>tbody>tr>td {
+    padding: 0 20px;
+}
+
+.song-list>.song-table>tbody>tr:hover {
+    height: 35px;
+    background-color: var(--text-color);
+    color: white;
+}
+
+.add-action {
+    display: inline-block;
+    margin: auto;
+    height: 25px;
+    width: 25px;
+    /* border: solid; */
+    border-radius: 50%;
+    background-color: var(--primary-color);
+}
+
+.add-action::before {
+    margin: 8px;
+    vertical-align: -25%;
+    content: "+"
 }
