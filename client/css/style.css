@@ -104,7 +104,8 @@ main {
 }
 
 .add-action,
-.remove-action {
+.remove-action,
+.play-action {
     display: inline-block;
     margin: auto;
     height: 25px;
@@ -112,6 +113,7 @@ main {
     /* border: solid; */
     border-radius: 50%;
     background-color: var(--primary-color);
+    cursor: pointer;
 }
 
 .add-action::before {
@@ -124,6 +126,12 @@ main {
     margin: 9px;
     vertical-align: -16%;
     content: "-"
+}
+
+.play-action::before {
+    margin: 7px;
+    vertical-align: -20%;
+    content: "▶"
 }
 
 #searchBar {
