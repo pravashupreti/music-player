@@ -1,0 +1,50 @@
+@import url(include/variable.css);
+@import url(include/global.css);
+img {
+    width: 75px;
+}
+
+
+/* div {
+    border: 1px solid;
+} */
+
+.nav {
+    position: fixed;
+    background-color: var(--primary-color);
+    width: 100%;
+}
+
+.nav .logo-container {
+    padding-left: 100px;
+    display: inline-block;
+    /* margin-left: 20vw; */
+}
+
+.nav .login-form {
+    position: relative;
+    padding: 29px 139px 29px 0px;
+    float: right;
+    display: inline-block;
+}
+
+.login-form .input-section {
+    display: inline;
+}
+
+.login-form>.input-section>input {
+    height: 25px;
+    border: none;
+}
+
+.login-form label {
+    color: white;
+}
+
+.login-msg {
+    position: absolute;
+    bottom: 0;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: #E95C40;
+}
