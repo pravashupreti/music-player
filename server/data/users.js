@@ -1,24 +1,18 @@
 const users = [{
     uid: 1,
-    username: "pravash",
+    userName: "pravash",
     password: "81dc9bdb52d04dc20036dbd8313ed055",
-    session: [
-
-    ]
+    session: ''
 }, {
     uid: 2,
-    username: "raj",
+    userName: "raj",
     password: "81dc9bdb52d04dc20036dbd8313ed055",
-    session: [
-
-    ]
+    session: ''
 }, {
     uid: 3,
-    username: "james",
+    userName: "james",
     password: "81dc9bdb52d04dc20036dbd8313ed055",
-    session: [
-
-    ]
+    session: ''
 }, ]
 
 module.exports = users
