@@ -27,8 +27,14 @@ window.onload = function() {
             displayPlayList(false)
             displayMusicPlayer(false)
 
+            // Reset all music player config
             const audio = document.getElementById('audio');
             audio.pause()
+            audio.src = null
+            playlist = []
+            shuffleBucket = []
+            authenticatedUser = null
+            playingSong = undefined
 
         })
     }
