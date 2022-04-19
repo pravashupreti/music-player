@@ -275,6 +275,9 @@ let userLoginFn = function(event) {
             document.getElementById("username").value = ""
             document.getElementById("password").value = ""
 
+            let loginMsgElement = document.getElementById("loginMsg")
+            loginMsgElement.innerHTML = ""
+
             loadUserPage(user)
 
         } else {
@@ -475,9 +478,9 @@ async function addToPlayList(songId) {
 function renderPlayList(songLists) {
     let playListDataElement = document.getElementById("playListData")
     let trHTML = '';
-    songLists.forEach(data => {
+    songLists.forEach((data, index) => {
         trHTML += `<tr> 
-                    <td>${data.id}</td> 
+                    <td>${index+1}</td> 
                     <td>${data.title}</td> 
                     <td>
                         <div class="remove-action" id="removeSongFromPlaylist${data.id}" > </div>
