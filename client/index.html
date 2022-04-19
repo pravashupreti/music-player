@@ -22,19 +22,20 @@
 
             </div>
             <div class="login-form" id="loginForm">
+                <form id="userLoginForm"></form>
                 <div class="input-section">
 
                     <label for="username">Username</label>
-                    <input type="text" id="username">
+                    <input form="userLoginForm" type="text" id="username">
                 </div>
 
                 <div class="input-section">
                     <label for="password">Password</label>
-                    <input type="password" id="password">
+                    <input form="userLoginForm" type="password" id="password">
                 </div>
 
                 <div class="input-section">
-                    <button id="login"> Login</button>
+                    <button form="userLoginForm" id="login"> Login</button>
 
                 </div>
                 <div class="login-msg" id="loginMsg">
@@ -78,7 +79,7 @@
 
         <section class="require-auth" id="songList">
             <div class="song-list">
-                <h2 class="title">
+                <h2 class="title" id="songListTableLabel">
                     Songs You may like
                 </h2>
                 <table class="song-table">

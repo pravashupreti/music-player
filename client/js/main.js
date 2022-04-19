@@ -6,29 +6,9 @@ window.onload = function() {
     checkAuthentication();
 
     // login 
-    document.getElementById("login").onclick = function() {
-        login(document.getElementById("username").value,
-            document.getElementById("password").value).then(res => {
-            console.log(res)
-            if (res.id) {
-                document.getElementById("username").value = ""
-                document.getElementById("password").value = ""
+    document.getElementById("login").onclick = userLoginFn
+    document.getElementById("userLoginForm").onsubmit = userLoginFn
 
-                displaySearchBar()
-                displayLandingPage(false)
-
-                displaySongList(true)
-                displayPlayList(true)
-
-
-            } else {
-                let loginMsgElement = document.getElementById("loginMsg")
-                loginMsgElement.innerHTML = res.message
-                loginMsgElement.style.display = "block"
-            }
-
-        })
-    }
 
     // logout
     document.getElementById("logoutBtn").onclick = function() {
@@ -42,11 +22,61 @@ window.onload = function() {
     }
 
     // search
-    document.getElementById("searchSongBtn").onclick = function() {
-        searchSong(document.getElementById("searchSong").value).then((res) => {
-            renderSongList(res)
-        })
-    }
+    document.getElementById("searchSongBtn").onclick = musicSearchFn
+    document.getElementById("searchSong").onkeyup = musicSearchFn
+
+}
+
+let userLoginFn = function(event) {
+    event.preventDefault();
+
+    login(document.getElementById("username").value,
+        document.getElementById("password").value).then(user => {
+
+        if (user.id) {
+            document.getElementById("username").value = ""
+            document.getElementById("password").value = ""
+
+            loadUserPage(user)
+
+        } else {
+            let loginMsgElement = document.getElementById("loginMsg")
+            loginMsgElement.innerHTML = user.message
+            loginMsgElement.style.display = "block"
+        }
+
+    })
+}
+
+let musicSearchFn = function() {
+    let searchString = document.getElementById("searchSong").value
+    searchSong(document.getElementById("searchSong").value).then((res) => {
+        if (searchString) {
+            document.getElementById("songListTableLabel").innerHTML = `Result of "${searchString}"`
+        } else {
+            document.getElementById("songListTableLabel").innerHTML = "Songs You may like"
+        }
+        renderSongList(res)
+    })
+}
+
+async function loadUserPage(user) {
+    displaySearchBar()
+
+    await getSongList().then(res => {
+        renderSongList(res)
+    })
+
+
+
+    await getPlayList().then(res => {
+        renderPlayList(res)
+    })
+
+    displayLandingPage(false)
+
+    displaySongList(true)
+    displayPlayList(true)
 
 }
 
@@ -54,24 +84,7 @@ async function checkAuthentication() {
     let user = await fetch('http://localhost:3000/user/checkAuthentication').then(response => response.json());
 
     if (user.id) {
-        displaySearchBar()
-
-        await getSongList().then(res => {
-            renderSongList(res)
-        })
-
-
-
-        await getPlayList().then(res => {
-            renderPlayList(res)
-        })
-
-        displayLandingPage(false)
-
-        displaySongList(true)
-        displayPlayList(true)
-
-        // await login('pravash', '1234')
+        await loadUserPage(user)
     }
 }
 
