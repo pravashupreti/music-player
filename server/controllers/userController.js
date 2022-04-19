@@ -60,6 +60,26 @@ exports.addSongToPlaylist = (req, res, next) => {
 
 }
 
+exports.removeSongFromPlaylist = (req, res, next) => {
+
+    if (req.cookies.session) {
+        let user = User.getUserFromSession(req.cookies.session)
+        if (user.id) {
+            let playlist = User.removeSongsFromPlaylist(req.body.songId, user.id)
+            return res.status(200).json(playlist)
+        } else {
+            res.status(200).json({});
+
+        }
+
+    } else {
+
+        res.status(200).json({});
+
+    }
+
+}
+
 exports.getPlayList = (req, res) => {
     if (req.cookies.session) {
         let user = User.getUserFromSession(req.cookies.session)

@@ -52,6 +52,14 @@ module.exports = class User {
 
     }
 
+    static removeSongsFromPlaylist(songId, userId) {
+        let userIndex = users.findIndex((user, index) => user.id === userId)
+        if (userIndex < 0) return {}
+        users[userIndex].playlist.find(x => x == songId) ? users[userIndex].playlist.pop(songId) : ''
+
+        return User.getPlayList(userId)
+    }
+
     static addSongToPlaylist(songId, userId) {
 
         let userIndex = users.findIndex((user, index) => user.id === userId)

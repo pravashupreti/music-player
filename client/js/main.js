@@ -249,7 +249,19 @@ function renderPlayList(songLists) {
 
 }
 
-function removeFromPlayList() {
+async function removeFromPlayList(songId) {
+
+    let playlist = await fetch('http://localhost:3000/user/playlist/remove', {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json',
+        },
+        body: JSON.stringify({
+            songId: songId
+        })
+    }).then(res => res.json());
+
+    return playlist
 
 }
 
