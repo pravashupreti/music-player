@@ -476,6 +476,14 @@ async function addToPlayList(songId) {
 
 
 function renderPlayList(songLists) {
+
+    let playListElement = document.getElementById("playList")
+    if (songLists.length == 0) {
+        playListElement.style.display = "none"
+    } else {
+        playListElement.style.display = "block"
+    }
+
     let playListDataElement = document.getElementById("playListData")
     let trHTML = '';
     songLists.forEach((data, index) => {
