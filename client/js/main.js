@@ -27,6 +27,9 @@ window.onload = function() {
             displayPlayList(false)
             displayMusicPlayer(false)
 
+            const audio = document.getElementById('audio');
+            audio.pause()
+
         })
     }
 
@@ -406,7 +409,6 @@ async function playNewSong(id) {
 function getShuffledSong() {
     if (shuffleBucket.length == playlist.length)
         shuffleBucket = []
-
     while (true) {
         let selectedSong = playlist[Math.floor(Math.random() * playlist.length)]
         let findInBucket = shuffleBucket.find(x => x.id == selectedSong.id)
