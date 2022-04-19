@@ -316,3 +316,10 @@ h2.title {
 .music-player {
     display: none;
 }
+
+.completed {
+    height: 10px;
+    border-radius: 50px;
+    width: 0%;
+    background: var(--primary-color);
+}

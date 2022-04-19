@@ -152,14 +152,14 @@
 
                     <div class="progress-bar-section">
                         <div class="song-title" id="playingSongTitle"></div>
-                        <div class="progress-bar">
+                        <div class="progress-bar" id="progressContainer">
                             <div class="total">
-                                <div class="completed"></div>
+                                <div class="completed" id="progress"></div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="timer">23:25/25:36</div>
+                    <div class="timer"> <span id="currentTime">00:00</span> / <span id="timeDuration">00:00</span> </div>
                     <div class="icon playlist-loop" id="playInLoop"></div>
                     <div class="icon playlist-shuffle" id="playInShuffle">
                         <div class="playlist-shuffle-1"></div>
