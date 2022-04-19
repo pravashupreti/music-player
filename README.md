@@ -25,3 +25,9 @@ Browse the url on browser
 ```
 http://localhost:3000
 ```
+
+## Screenshots
+
+![login](docs/login-page.png?raw=true "Login")
+![login](docs/homepage.png?raw=true "Homepage")
+![login](docs/search.png?raw=true "Search")
