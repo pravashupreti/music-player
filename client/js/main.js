@@ -1,5 +1,11 @@
 let playlist = []
 let authenticatedUser = null
+let playingSong
+
+// Media player config
+let playIn = "loop"
+
+
 
 
 window.onload = function() {
@@ -24,6 +30,81 @@ window.onload = function() {
     // search
     document.getElementById("searchSongBtn").onclick = musicSearchFn
     document.getElementById("searchSong").onkeyup = musicSearchFn
+
+    // play song
+    document.getElementById("playBtn").onclick = function() {
+        const audio = document.getElementById('audio');
+        if (audio.src) {
+            audio.play();
+
+            document.getElementById("playBtn").style.display = "none"
+            document.getElementById("pauseBtn").style.display = "inline-block"
+
+        }
+
+    }
+    document.getElementById("pauseBtn").onclick = function() {
+        const audio = document.getElementById('audio');
+        if (audio.src) {
+            audio.pause();
+
+            document.getElementById("playBtn").style.display = "inline-block"
+            document.getElementById("pauseBtn").style.display = "none"
+
+        }
+
+    }
+
+    document.getElementById("prevSongBtn").onclick = function() {
+
+        const audio = document.getElementById('audio');
+
+        if (playingSong) {
+
+            let index = playlist.findIndex(x => x.id == playingSong.id)
+
+            index--
+            if (index >= 0) {
+                playNewSong(playlist[index].id)
+            } else {
+
+                playNewSong(playlist[playlist.length - 1].id)
+            }
+
+        }
+
+    }
+    document.getElementById("nextSongBtn").onclick = function() {
+
+        const audio = document.getElementById('audio');
+
+        if (playingSong) {
+
+            let index = playlist.findIndex(x => x.id == playingSong.id)
+
+            index++
+            if (index < playlist.length) {
+                playNewSong(playlist[index].id)
+            } else {
+
+                playNewSong(playlist[0].id)
+            }
+
+        }
+
+
+    }
+
+    document.getElementById("playInLoop").onclick = function() {
+
+    }
+    document.getElementById("playInShuffle").onclick = function() {
+
+    }
+    document.getElementById("playInRepetOnce").onclick = function() {
+
+    }
+
 
 }
 
@@ -70,6 +151,7 @@ async function loadUserPage(user) {
 
 
     await getPlayList().then(res => {
+        playlist = res
         renderPlayList(res)
     })
 
@@ -195,11 +277,11 @@ function renderSongList(songLists) {
         document.getElementById(`addSongToPlaylist${data.id}`).onclick = function(event) {
             addToPlayList(`${data.id}`).then(res => {
                 renderPlayList(res)
+                playlist = res
             });
 
         }
     });
-
 
 }
 
@@ -239,10 +321,11 @@ function renderPlayList(songLists) {
         document.getElementById(`removeSongFromPlaylist${data.id}`).onclick = function(event) {
             removeFromPlayList(`${data.id}`).then(res => {
                 renderPlayList(res)
+                playlist = res
             });
         }
         document.getElementById(`playSong${data.id}`).onclick = function(event) {
-            playSong(res)
+            playNewSong(`${data.id}`)
         }
     });
 
@@ -265,6 +348,31 @@ async function removeFromPlayList(songId) {
 
 }
 
-function playSong() {
+let currentPlayingSong;
+let playListStyle
+
+async function playNewSong(id) {
+
+    const audio = document.getElementById('audio');
+
+    let song = playlist.find(x => x.id == id)
+
+    playingSong = song
+
+    audio.src = `./musics/${song.fileName}`;
+    audio.play();
+
+
+    document.getElementById("playingSongTitle").innerHTML = song.title
+
+    document.getElementById("playBtn").style.display = "none"
+    document.getElementById("pauseBtn").style.display = "inline-block"
+}
+
+async function playSong() {
+
+}
+
+async function pauseSong() {
 
 }

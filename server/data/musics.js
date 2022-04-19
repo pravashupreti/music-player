@@ -43,13 +43,13 @@ const musics = [{
         id: 8,
         title: "I Gotta Feeling",
         releaseDate: '1960-01-01',
-        fileName: ''
+        fileName: 'I-gotta-feeling.mp3'
     },
     {
         id: 9,
         title: "Macarena (Bayside Boys mix)",
         releaseDate: '1960-01-01',
-        fileName: 'I-gotta-feeling.mp3'
+        fileName: 'macarena.mp3'
     },
     {
         id: 10,

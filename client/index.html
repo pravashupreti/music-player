@@ -144,13 +144,14 @@
         <div class="music-player">
             <div class="music-player-container">
                 <div class="controls">
-                    <div class="icon previous-btn"></div>
-                    <div class="icon play-btn"></div>
-                    <!-- <div class="icon pause-btn"> </div> -->
-                    <div class="icon next-btn"></div>
+                    <audio id="audio"></audio>
+                    <div class="icon previous-btn" id="prevSongBtn"></div>
+                    <div class="icon play-btn" id="playBtn"></div>
+                    <div class="icon pause-btn" id="pauseBtn"> </div>
+                    <div class="icon next-btn" id="nextSongBtn"></div>
 
                     <div class="progress-bar-section">
-                        <div class="song-title">Shape of you</div>
+                        <div class="song-title" id="playingSongTitle"></div>
                         <div class="progress-bar">
                             <div class="total">
                                 <div class="completed"></div>
@@ -159,11 +160,11 @@
                     </div>
 
                     <div class="timer">23:25/25:36</div>
-                    <!-- <div class="icon playlist-loop"></div> -->
-                    <div class="icon playlist-shuffle">
+                    <div class="icon playlist-loop" id="playInLoop"></div>
+                    <div class="icon playlist-shuffle" id="playInShuffle">
                         <div class="playlist-shuffle-1"></div>
                     </div>
-                    <!-- <div class="icon repeat-once"></div> -->
+                    <div class="icon repeat-once" id="playInRepetOnce"></div>
 
                 </div>
             </div>
