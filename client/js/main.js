@@ -1,9 +1,10 @@
 let playlist = []
+let shuffleBucket = []
 let authenticatedUser = null
 let playingSong
 
 // Media player config
-let playIn = "loop"
+let playIn = "LOOP"
 
 
 
@@ -57,7 +58,11 @@ window.onload = function() {
 
     document.getElementById("prevSongBtn").onclick = function() {
 
-        const audio = document.getElementById('audio');
+        if (playIn == "SHUFFLE") {
+            playNewSong(getShuffledSong())
+            return
+        }
+
 
         if (playingSong) {
 
@@ -76,7 +81,10 @@ window.onload = function() {
     }
     document.getElementById("nextSongBtn").onclick = function() {
 
-        const audio = document.getElementById('audio');
+        if (playIn == "SHUFFLE") {
+            playNewSong(getShuffledSong())
+            return
+        }
 
         if (playingSong) {
 
@@ -96,13 +104,23 @@ window.onload = function() {
     }
 
     document.getElementById("playInLoop").onclick = function() {
+        document.getElementById("playInLoop").style.display = "none"
+        document.getElementById("playInShuffle").style.display = "inline-block"
+        document.getElementById("playInRepetOnce").style.display = "none"
+        playIn = "SHUFFLE"
 
     }
     document.getElementById("playInShuffle").onclick = function() {
-
+        document.getElementById("playInLoop").style.display = "none"
+        document.getElementById("playInShuffle").style.display = "none"
+        document.getElementById("playInRepetOnce").style.display = "inline-block"
+        playIn = "REPEAT_ONCE"
     }
     document.getElementById("playInRepetOnce").onclick = function() {
-
+        document.getElementById("playInLoop").style.display = "inline-block"
+        document.getElementById("playInShuffle").style.display = "none"
+        document.getElementById("playInRepetOnce").style.display = "none"
+        playIn = "LOOP"
     }
 
 
@@ -369,10 +387,18 @@ async function playNewSong(id) {
     document.getElementById("pauseBtn").style.display = "inline-block"
 }
 
-async function playSong() {
+function getShuffledSong() {
+    if (shuffleBucket.length == playlist.length)
+        shuffleBucket = []
 
-}
+    while (true) {
+        let selectedSong = playlist[Math.floor(Math.random() * playlist.length)]
+        let findInBucket = shuffleBucket.find(x => x.id == selectedSong.id)
 
-async function pauseSong() {
-
+        if (!findInBucket) {
+            shuffleBucket.push(selectedSong)
+            console.log(shuffleBucket)
+            return selectedSong.id
+        }
+    }
 }
