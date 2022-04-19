@@ -55,7 +55,9 @@ module.exports = class User {
     static removeSongsFromPlaylist(songId, userId) {
         let userIndex = users.findIndex((user, index) => user.id === userId)
         if (userIndex < 0) return {}
-        users[userIndex].playlist.find(x => x == songId) ? users[userIndex].playlist.pop(songId) : ''
+        let playlistIndex = users[userIndex].playlist.findIndex(x => x == songId)
+
+        users[userIndex].playlist.splice(playlistIndex, 1)
 
         return User.getPlayList(userId)
     }
