@@ -25,6 +25,8 @@ window.onload = function() {
 
             displaySongList(false)
             displayPlayList(false)
+            displayMusicPlayer(false)
+
         })
     }
 
@@ -162,6 +164,8 @@ let musicSearchFn = function() {
 async function loadUserPage(user) {
     displaySearchBar()
 
+
+
     await getSongList().then(res => {
         renderSongList(res)
     })
@@ -177,6 +181,8 @@ async function loadUserPage(user) {
 
     displaySongList(true)
     displayPlayList(true)
+
+    displayMusicPlayer(true)
 
 }
 
@@ -267,6 +273,16 @@ function displayPlayList(status) {
         document.getElementById("playList").style.display = "none"
 
 }
+
+
+function displayMusicPlayer(status) {
+    if (status)
+        document.getElementById("musicPlayer").style.display = "block"
+    else
+        document.getElementById("musicPlayer").style.display = "none"
+
+}
+
 
 function displayLandingPage(status) {
     if (status)

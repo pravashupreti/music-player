@@ -308,6 +308,11 @@ h2.title {
 }
 
 .controls>div.playlist-shuffle,
-.controls>div.repeat-once {
+.controls>div.repeat-once,
+.controls>div.pause-btn {
+    display: none;
+}
+
+.music-player {
     display: none;
 }
