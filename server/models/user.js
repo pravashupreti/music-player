@@ -59,7 +59,14 @@ module.exports = class User {
 
         users[userIndex].playlist.find(x => x == songId) ? '' : users[userIndex].playlist.push(songId)
 
+        return User.getPlayList(userId)
 
+
+    }
+
+    static getPlayList(userId) {
+        let userIndex = users.findIndex((user, index) => user.id === userId)
+        if (userIndex < 0) return {}
 
         let playlist = users[userIndex].playlist.map(x => {
             let songIndex = musics.findIndex(y => y.id == x)
@@ -68,7 +75,6 @@ module.exports = class User {
         }).filter(z => z.id ? true : false)
 
         return playlist
-
     }
 
 }

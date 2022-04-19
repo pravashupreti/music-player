@@ -11,4 +11,10 @@ module.exports = class Music {
     static getMusic() {
         return musics
     }
+    static search(searchString) {
+        return musics.filter(x => {
+            return (x.title.toLowerCase().search(searchString.toLowerCase()) >= 0)
+        })
+
+    }
 }

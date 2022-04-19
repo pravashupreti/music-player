@@ -13,9 +13,18 @@ window.onload = function() {
             if (res.id) {
                 document.getElementById("username").value = ""
                 document.getElementById("password").value = ""
-                displaySearchBar()
-                displaySongList(true)
 
+                displaySearchBar()
+                displayLandingPage(false)
+
+                displaySongList(true)
+                displayPlayList(true)
+
+
+            } else {
+                let loginMsgElement = document.getElementById("loginMsg")
+                loginMsgElement.innerHTML = res.message
+                loginMsgElement.style.display = "block"
             }
 
         })
@@ -25,7 +34,17 @@ window.onload = function() {
     document.getElementById("logoutBtn").onclick = function() {
         logout().then(() => {
             displayLogin()
-            displayMusicList(false)
+            displayLandingPage(true)
+
+            displaySongList(false)
+            displayPlayList(false)
+        })
+    }
+
+    // search
+    document.getElementById("searchSongBtn").onclick = function() {
+        searchSong(document.getElementById("searchSong").value).then((res) => {
+            renderSongList(res)
         })
     }
 
@@ -39,10 +58,18 @@ async function checkAuthentication() {
 
         await getSongList().then(res => {
             renderSongList(res)
-            displaySongList(true)
         })
 
 
+
+        await getPlayList().then(res => {
+            renderPlayList(res)
+        })
+
+        displayLandingPage(false)
+
+        displaySongList(true)
+        displayPlayList(true)
 
         // await login('pravash', '1234')
     }
@@ -51,6 +78,25 @@ async function checkAuthentication() {
 async function getSongList() {
     return await fetch('http://localhost:3000/songs').then(response => response.json());
 }
+
+async function getPlayList() {
+    return await fetch('http://localhost:3000/user/playlist').then(response => response.json());
+}
+
+async function searchSong(searchString) {
+    let result = await fetch('http://localhost:3000/songs/search', {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json',
+        },
+        body: JSON.stringify({
+            searchString: searchString,
+        })
+    }).then(res => res.json());
+    return result
+
+}
+
 
 async function login(userName, password) {
 
@@ -98,6 +144,22 @@ function displaySongList(status) {
     else
         document.getElementById("songList").style.display = "none"
 
+}
+
+
+function displayPlayList(status) {
+    if (status)
+        document.getElementById("playList").style.display = "block"
+    else
+        document.getElementById("playList").style.display = "none"
+
+}
+
+function displayLandingPage(status) {
+    if (status)
+        document.getElementById("welcomePage").style.display = "block"
+    else
+        document.getElementById("welcomePage").style.display = "none"
 }
 
 
